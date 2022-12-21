@@ -1,0 +1,30 @@
+﻿<Window x:Class="Mummy.Encryption_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mummy"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="Encryption" Height="392" Width="679" Background="#FFC8C8C8">
+    <Grid>
+        <Image x:Name="EncrytWinIcon" HorizontalAlignment="Left" Height="60" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Source="Icons/encryptIconV3_NoBkg.png"/>
+        <Button x:Name="EncryptSelectFileButton" Content="Select File" HorizontalAlignment="Left" Height="47" Margin="97,23,0,0" VerticalAlignment="Top" Width="77" Background="Gainsboro" Click="EncryptSelectFileButton_Click"/>
+        <Button x:Name="EncryptImportKeyButton" Content="Import Key" HorizontalAlignment="Left" Height="47" Margin="198,23,0,0" VerticalAlignment="Top" Width="78" Background="Gainsboro" Click="EncryptImportKeyButton_Click"/>
+        <Button x:Name="EncryptGenerateKeyButton" Content="Generate Key" Height="47" Margin="308,23,0,0" VerticalAlignment="Top" Width="76" Background="Gainsboro" HorizontalAlignment="Left" Click="EncryptGenerateKeyButton_Click"/>
+        <Button x:Name="EncryptFileButton" Content="Encrypt File" HorizontalAlignment="Left" Height="47" Margin="517,23,0,0" VerticalAlignment="Top" Width="76" Background="#FF53FF33" FontWeight="Bold" Click="EncryptFileButton_Click"/>
+        <Label Content="File: " HorizontalAlignment="Left" Margin="9,88,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <TextBox x:Name="fileToEncryptTextBox" HorizontalAlignment="Left" Height="18" Margin="46,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
+        <Label Content="Key:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <TextBox x:Name="encryptionKeyTextBox" HorizontalAlignment="Left" Height="18" Margin="46,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
+        <TextBox x:Name="consoleTextBox" HorizontalAlignment="Left" Height="170" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="583"/>
+        <Label Content="Console" HorizontalAlignment="Left" Margin="9,146,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <ComboBox x:Name="KeySizeDropDown" HorizontalAlignment="Left" Margin="410,36,0,0" VerticalAlignment="Top" Width="84" SelectionChanged="KeySizeDropDown_SelectionChanged" SelectedIndex="0" IsSynchronizedWithCurrentItem="False">
+            <ComboBoxItem Content="128"/>
+            <ComboBoxItem Content="192"/>
+            <ComboBoxItem Content="256"/>
+        </ComboBox>
+        <Label Content="Key Size (bits)" HorizontalAlignment="Left" Margin="407,16,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

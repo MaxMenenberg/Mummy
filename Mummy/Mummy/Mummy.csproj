@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="encryptIconV2_NoBkg.png" />
+    <None Remove="Icons\decryptIconV2_NoBkg.PNG" />
+    <None Remove="Icons\decryptIconV3_NoBkg.PNG" />
+    <None Remove="Icons\digitalSignatureIcon_NoBkg.PNG" />
+    <None Remove="Icons\encryptIconV2_NoBkg.png" />
+    <None Remove="Icons\encryptIconV3_NoBkg.png" />
+    <None Remove="Icons\keyExchangeIcon_NoBkg.PNG" />
+    <None Remove="Icons\verifySignatureIcon_NoBkg.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="encryptIconV2_NoBkg.png" />
+    <Resource Include="Icons\decryptIconV2_NoBkg.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\decryptIconV3_NoBkg.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\digitalSignatureIcon_NoBkg.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\encryptIconV2_NoBkg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\encryptIconV3_NoBkg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\keyExchangeIcon_NoBkg.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\verifySignatureIcon_NoBkg.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿<Window x:Class="Mummy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mummy"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="MainWindow" Height="450" Width="800" Background="#FFC8C8C8">
+    <Grid>
+        <Button x:Name="encryptButton" HorizontalAlignment="Left" Margin="113,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="encryptButton_Click">
+            <Image Source="Icons/encryptIconV3_NoBkg.png"/>
+        </Button>
+        <Button x:Name="decryptButton" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+            <Image Source="/Icons/decryptIconV3_NoBkg.png"/>
+        </Button>
+        <Button x:Name="keyExchangeButton" HorizontalAlignment="Left" Margin="343,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+            <Image Source="/Icons/keyExchangeIcon_NoBkg.PNG"/>
+        </Button>
+        <Button x:Name="SignatureButton" HorizontalAlignment="Left" Margin="458,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+            <Image Source="/Icons/digitalSignatureIcon_NoBkg.PNG"/>
+        </Button>
+        <Button x:Name="VerifySigButton" HorizontalAlignment="Left" Margin="573,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+            <Image Source="/Icons/verifySignatureIcon_NoBkg.PNG"/>
+        </Button>
+        <Grid HorizontalAlignment="Center" Height="131" Margin="0,191,0,0" VerticalAlignment="Top" Width="652"/>
+
+    </Grid>
+</Window>
