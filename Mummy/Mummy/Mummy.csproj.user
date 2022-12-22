@@ -7,11 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Decryption_Window.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Encryption_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Decryption_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Encryption_Window.xaml">
       <SubType>Designer</SubType>
     </Page>

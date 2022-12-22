@@ -8,10 +8,18 @@
         ResizeMode="CanMinimize"
         Title="MainWindow" Height="450" Width="800" Background="#FFC8C8C8">
     <Grid>
-        <Button x:Name="encryptButton" HorizontalAlignment="Left" Margin="113,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="encryptButton_Click">
+        <Button x:Name="encryptButton" HorizontalAlignment="Left" Margin="113,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="encryptButton_Click" 
+            ToolTipService.InitialShowDelay="2000" 
+            ToolTipService.ShowDuration="2000" 
+            ToolTipService.BetweenShowDelay="2000" 
+            ToolTip="Encrypt a file">
             <Image Source="Icons/encryptIconV3_NoBkg.png"/>
         </Button>
-        <Button x:Name="decryptButton" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+        <Button x:Name="decryptButton" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro"
+            ToolTipService.InitialShowDelay="2000" 
+            ToolTipService.ShowDuration="2000" 
+            ToolTipService.BetweenShowDelay="2000" 
+            ToolTip="Decrypt a file" Click="decryptButton_Click">
             <Image Source="/Icons/decryptIconV3_NoBkg.png"/>
         </Button>
         <Button x:Name="keyExchangeButton" HorizontalAlignment="Left" Margin="343,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">

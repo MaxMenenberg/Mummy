@@ -32,5 +32,11 @@ namespace Mummy
             Encryption_Window encryptWin = new Encryption_Window();
             encryptWin.Show();
         }
+
+        private void decryptButton_Click(object sender, RoutedEventArgs e)
+        {
+            Decryption_Window decryptWin = new Decryption_Window();
+            decryptWin.Show();
+        }
     }
 }

@@ -17,7 +17,7 @@
         <TextBox x:Name="fileToEncryptTextBox" HorizontalAlignment="Left" Height="18" Margin="46,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
         <Label Content="Key:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <TextBox x:Name="encryptionKeyTextBox" HorizontalAlignment="Left" Height="18" Margin="46,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
-        <TextBox x:Name="consoleTextBox" HorizontalAlignment="Left" Height="170" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="583"/>
+        <TextBox x:Name="consoleTextBox_encrypt" HorizontalAlignment="Left" Height="170" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="583"/>
         <Label Content="Console" HorizontalAlignment="Left" Margin="9,146,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <ComboBox x:Name="KeySizeDropDown" HorizontalAlignment="Left" Margin="410,36,0,0" VerticalAlignment="Top" Width="84" SelectionChanged="KeySizeDropDown_SelectionChanged" SelectedIndex="0" IsSynchronizedWithCurrentItem="False">
             <ComboBoxItem Content="128"/>

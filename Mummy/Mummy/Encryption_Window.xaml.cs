@@ -26,7 +26,7 @@ namespace Mummy
 
         private string fileToEncrypt;
         private int keySize;
-        bool fileSelected, keySelected;
+        bool fileSelected, keySelected, isKeyImported;
         private System.Security.Cryptography.Aes cipher;
         private MxKey k;
         private byte[] IV = new byte[16];
@@ -38,6 +38,7 @@ namespace Mummy
             fileToEncrypt = "";
             fileSelected = false;
             keySelected = false;
+            isKeyImported = false;
             EncryptFileButton.IsEnabled = false;
             k = new MxKey();
         }
@@ -45,6 +46,25 @@ namespace Mummy
         private void KeySizeDropDown_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             keySize = int.Parse(((ComboBoxItem)KeySizeDropDown.SelectedItem).Content.ToString());
+        }
+
+        private void EncryptSelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            fileToEncrypt = Utils.GetFileFromDialog();
+            if (!fileToEncrypt.Equals("default"))
+            {
+                fileToEncryptTextBox.Text = fileToEncrypt;
+                fileSelected = true;
+            }
+
+            if (keySelected && fileSelected)
+            {
+                EncryptFileButton.IsEnabled = true;
+            }
+            else
+            {
+                EncryptFileButton.IsEnabled = false;
+            }
         }
 
         private void EncryptImportKeyButton_Click(object sender, RoutedEventArgs e)
@@ -57,19 +77,20 @@ namespace Mummy
             {
                 encryptionKeyTextBox.Text = k.KeyToHexString();
                 keySelected = true;
+                isKeyImported = true;
 
                 if (keySelected && fileSelected)
                 {
                     EncryptFileButton.IsEnabled = true;
                 }
                 else {
-                    EncryptFileButton.IsEnabled = true;
+                    EncryptFileButton.IsEnabled = false;
                 }
             }
             else {
                 keySelected = false;
                 encryptionKeyTextBox.Text = "";
-                consoleTextBox.Text = "Error importing key from " + keyFile;
+                consoleTextBox_encrypt.Text = "Error importing key from " + keyFile;
             }
 
 
@@ -85,6 +106,7 @@ namespace Mummy
 
             encryptionKeyTextBox.Text = k.KeyToHexString();
             keySelected = true;
+            isKeyImported = false;
 
             if (keySelected && fileSelected)
             {
@@ -92,17 +114,16 @@ namespace Mummy
             }
             else
             {
-                EncryptFileButton.IsEnabled = true;
+                EncryptFileButton.IsEnabled = false;
             }
 
         }
 
         private void EncryptFileButton_Click(object sender, RoutedEventArgs e)
         {
+            string EncryptedFileName = fileToEncrypt + ".crypt";
+            string EncryptionKeyFileName = fileToEncrypt + ".key";
             try {
-                string EncryptedFileName = fileToEncrypt + ".crypt";
-                string EncryptionKeyFileName = fileToEncrypt + ".key";
-
                 if (File.Exists(EncryptedFileName))
                 {
                     System.Windows.Forms.DialogResult dr = System.Windows.Forms.MessageBox.Show(EncryptedFileName + " already exists, do you want to overwrite it?", "", MessageBoxButtons.YesNo);
@@ -124,6 +145,9 @@ namespace Mummy
                     }
                 }
 
+                cipher = System.Security.Cryptography.Aes.Create();
+                cipher.Key = k.Key;
+
                 File.Create(EncryptedFileName).Close();
 
                 byte[] rawFileData = File.ReadAllBytes(fileToEncrypt);
@@ -131,41 +155,33 @@ namespace Mummy
                 byte[] cipherData = cipher.EncryptCbc(rawFileData, IV, PaddingMode.PKCS7);
 
                 File.WriteAllBytes(EncryptedFileName, cipherData);
-
-                k.ExportKeyToFile(EncryptionKeyFileName);
+                
+                //If the user imported the key don't export another copy. Only export the key if they generated it
+                if (!isKeyImported)
+                {
+                    k.ExportKeyToFile(EncryptionKeyFileName);
+                }
 
                 clearConsole();
-                consoleTextBox.Text = "Successfully Encrypted " + fileToEncrypt + " to " + EncryptedFileName;
-                consoleTextBox.AppendText("\nExported Key to " + EncryptionKeyFileName);
+                consoleTextBox_encrypt.Text = "Successfully Encrypted " + fileToEncrypt + " to " + EncryptedFileName;
+                consoleTextBox_encrypt.AppendText("\nExported Key to " + EncryptionKeyFileName);
 
                 
 
             }
             catch(Exception ex)
             {
+                if (File.Exists(EncryptedFileName))
+                {
+                    File.Delete(EncryptedFileName);
+                }
                 clearConsole();
-                consoleTextBox.Text = "Error encrypting " + fileToEncrypt + ". " + ex.ToString();
-            }
-        }
-
-        private void EncryptSelectFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            fileToEncrypt = Utils.GetFileFromDialog();
-            fileToEncryptTextBox.Text = fileToEncrypt;
-            fileSelected = true;
-
-            if (keySelected && fileSelected)
-            {
-                EncryptFileButton.IsEnabled = true;
-            }
-            else
-            {
-                EncryptFileButton.IsEnabled = true;
+                consoleTextBox_encrypt.Text = "Error encrypting " + fileToEncrypt + ". " + ex.ToString();
             }
         }
 
         public void clearConsole() {
-            consoleTextBox.Text = null;
+            consoleTextBox_encrypt.Text = null;
         }
     }
 }
