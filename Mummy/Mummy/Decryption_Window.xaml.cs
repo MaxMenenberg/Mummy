@@ -24,7 +24,7 @@ namespace Mummy
     {
 
         private string fileToDecrypt;
-        bool fileSelected, keySelected;
+        bool fileSelected, keySelected, usePlainTextPw;
         private System.Security.Cryptography.Aes cipher;
         private MxKey k;
         private byte[] IV = new byte[16];
@@ -37,6 +37,7 @@ namespace Mummy
             fileSelected = false;
             keySelected = false;
             DecryptFileButton.IsEnabled = false;
+            usePlainTextPw = false;
             k = new MxKey();
         }
 
@@ -113,6 +114,14 @@ namespace Mummy
             {
                 File.Create(decryptedFileName).Close();
 
+                if (usePlainTextPw) {
+                    byte[] hashRes265Bit = Utils.plaintextPwTo265bitKey(decryptionKeyTextBox.Text);
+
+                    k.Key = hashRes265Bit;
+                    k.KeyType = MxKeyType.AES;
+                    k.IsPrivate = true;
+                }
+
                 cipher = System.Security.Cryptography.Aes.Create();
                 cipher.Key = k.Key;
 
@@ -129,7 +138,42 @@ namespace Mummy
                 File.Delete(decryptedFileName);
                 clearConsole();
                 consoleTextBox_decrypt.Text = "Could not decrypt " + fileToDecrypt;
-                consoleTextBox_decrypt.AppendText("\nMake sure the file/key pair is valid");
+                consoleTextBox_decrypt.AppendText("\nMake sure the key or password is correct");
+            }
+        }
+
+        private void usePlainTextPwCheckBox_decrypt_Checked(object sender, RoutedEventArgs e)
+        {
+            DecryptImportKeyButton.IsEnabled = false;
+            decryptionKeyTextBox.Text = "<Enter decryption password here>";
+            keySelected = true;
+            usePlainTextPw = true;
+
+            if (keySelected && fileSelected)
+            {
+                DecryptFileButton.IsEnabled = true;
+            }
+            else
+            {
+                DecryptFileButton.IsEnabled = false;
+            }
+
+        }
+
+        private void usePlainTextPwCheckBox_decrypt_Unchecked(object sender, RoutedEventArgs e)
+        {
+            DecryptImportKeyButton.IsEnabled = true;
+            decryptionKeyTextBox.Text = null;
+            keySelected = false;
+            usePlainTextPw = false;
+
+            if (keySelected && fileSelected)
+            {
+                DecryptFileButton.IsEnabled = true;
+            }
+            else
+            {
+                DecryptFileButton.IsEnabled = false;
             }
         }
 

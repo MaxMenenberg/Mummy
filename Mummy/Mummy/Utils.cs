@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,5 +50,20 @@ namespace Mummy
             return fileName;
         }
 
-    }
+        public static byte[] plaintextPwTo265bitKey(string pw)
+        {
+            byte[] pwBytes = Encoding.ASCII.GetBytes(pw);
+            SHA512 hashFunc = SHA512.Create();
+            byte[] hashResults = hashFunc.ComputeHash(pwBytes);
+
+            byte[] hashRes265Bit = new byte[32];
+            for (int n = 0; n < 32; n++)
+            {
+                hashRes265Bit[n] = hashResults[n];
+            }
+
+            return hashRes265Bit;
+        }
+
+        }
 }

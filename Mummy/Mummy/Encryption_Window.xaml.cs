@@ -26,7 +26,7 @@ namespace Mummy
 
         private string fileToEncrypt;
         private int keySize;
-        bool fileSelected, keySelected, isKeyImported;
+        bool fileSelected, keySelected, isKeyImported, usePlainTextPw;
         private System.Security.Cryptography.Aes cipher;
         private MxKey k;
         private byte[] IV = new byte[16];
@@ -40,6 +40,7 @@ namespace Mummy
             keySelected = false;
             isKeyImported = false;
             EncryptFileButton.IsEnabled = false;
+            usePlainTextPw = false;
             k = new MxKey();
         }
 
@@ -119,6 +120,45 @@ namespace Mummy
 
         }
 
+        private void usePlainTextPwCheckBox_encrypt_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EncryptImportKeyButton.IsEnabled = true;
+            EncryptGenerateKeyButton.IsEnabled = true;
+            encryptionKeyTextBox.Text = null;
+            KeySizeDropDown.IsEnabled = true;
+            isKeyImported = false;
+            keySelected = false;
+            usePlainTextPw = false;
+
+            if (keySelected && fileSelected)
+            {
+                EncryptFileButton.IsEnabled = true;
+            }
+            else
+            {
+                EncryptFileButton.IsEnabled = false;
+            }
+        }
+
+        private void usePlainTextPwCheckBox_encrypt_Checked(object sender, RoutedEventArgs e)
+        {
+            EncryptImportKeyButton.IsEnabled = false;
+            EncryptGenerateKeyButton.IsEnabled = false;
+            KeySizeDropDown.IsEnabled = false;
+            encryptionKeyTextBox.Text = "<Enter encryption password here>";
+            keySelected = true;
+            usePlainTextPw = true;
+
+            if (keySelected && fileSelected)
+            {
+                EncryptFileButton.IsEnabled = true;
+            }
+            else
+            {
+                EncryptFileButton.IsEnabled = false;
+            }
+        }
+
         private void EncryptFileButton_Click(object sender, RoutedEventArgs e)
         {
             string EncryptedFileName = fileToEncrypt + ".crypt";
@@ -145,6 +185,15 @@ namespace Mummy
                     }
                 }
 
+                //If we are using a plain text password create the key now
+                if (usePlainTextPw) {
+                    byte[] hashRes265Bit = Utils.plaintextPwTo265bitKey(encryptionKeyTextBox.Text);
+
+                    k.Key = hashRes265Bit;
+                    k.KeyType = MxKeyType.AES;
+                    k.IsPrivate = true;
+                }
+
                 cipher = System.Security.Cryptography.Aes.Create();
                 cipher.Key = k.Key;
 
@@ -156,17 +205,18 @@ namespace Mummy
 
                 File.WriteAllBytes(EncryptedFileName, cipherData);
                 
-                //If the user imported the key don't export another copy. Only export the key if they generated it
-                if (!isKeyImported)
-                {
-                    k.ExportKeyToFile(EncryptionKeyFileName);
-                }
 
                 clearConsole();
                 consoleTextBox_encrypt.Text = "Successfully Encrypted " + fileToEncrypt + " to " + EncryptedFileName;
-                consoleTextBox_encrypt.AppendText("\nExported Key to " + EncryptionKeyFileName);
 
-                
+                //If the user imported the key don't export another copy. Only export the key if they generated it
+                if (!isKeyImported && !usePlainTextPw)
+                {
+                    k.ExportKeyToFile(EncryptionKeyFileName);
+                    consoleTextBox_encrypt.AppendText("\nExported Key to " + EncryptionKeyFileName);
+                }
+
+
 
             }
             catch(Exception ex)

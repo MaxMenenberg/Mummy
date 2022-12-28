@@ -18,6 +18,7 @@
         <Label Content="Console" HorizontalAlignment="Left" Margin="9,146,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <Button x:Name="DecryptImportKeyButton" Content="Import Key" HorizontalAlignment="Left" Height="47" Margin="198,23,0,0" VerticalAlignment="Top" Width="78" Background="Gainsboro" Click="DecryptImportKeyButton_Click"/>
         <Button x:Name="DecryptFileButton" Content="Decrypt File" HorizontalAlignment="Left" Height="47" Margin="517,23,0,0" VerticalAlignment="Top" Width="76" Background="#FFE57400" FontWeight="Bold" Click="DecryptFileButton_Click"/>
+        <CheckBox x:Name="usePlainTextPwCheckBox_decrypt" Content="Use Plain Text Password" HorizontalAlignment="Left" Margin="302,40,0,0" VerticalAlignment="Top" Checked="usePlainTextPwCheckBox_decrypt_Checked" Unchecked="usePlainTextPwCheckBox_decrypt_Unchecked"/>
 
     </Grid>
 </Window>
