@@ -38,5 +38,11 @@ namespace Mummy
             Decryption_Window decryptWin = new Decryption_Window();
             decryptWin.Show();
         }
+
+        private void keyExchangeButton_Click(object sender, RoutedEventArgs e)
+        {
+            KeyExchange_Window keyExWin = new KeyExchange_Window();
+            keyExWin.Show();
+        }
     }
 }

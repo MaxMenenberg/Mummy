@@ -22,7 +22,7 @@
             ToolTip="Decrypt a file" Click="decryptButton_Click">
             <Image Source="/Icons/decryptIconV3_NoBkg.png"/>
         </Button>
-        <Button x:Name="keyExchangeButton" HorizontalAlignment="Left" Margin="343,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+        <Button x:Name="keyExchangeButton" HorizontalAlignment="Left" Margin="343,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="keyExchangeButton_Click">
             <Image Source="/Icons/keyExchangeIcon_NoBkg.PNG"/>
         </Button>
         <Button x:Name="SignatureButton" HorizontalAlignment="Left" Margin="458,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
@@ -31,7 +31,11 @@
         <Button x:Name="VerifySigButton" HorizontalAlignment="Left" Margin="573,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
             <Image Source="/Icons/verifySignatureIcon_NoBkg.PNG"/>
         </Button>
-        <Grid HorizontalAlignment="Center" Height="131" Margin="0,191,0,0" VerticalAlignment="Top" Width="652"/>
+        <Label Content="Encryption" HorizontalAlignment="Left" Margin="109,46,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
+        <Label Content="Decryption" HorizontalAlignment="Left" Margin="224,47,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
+        <Label Content="Key Exchange" HorizontalAlignment="Left" Margin="338,47,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
+        <Label Content="Digital Signature" HorizontalAlignment="Left" Margin="454,46,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
+        <Label Content="Digital Signature &#xD;&#xA;Verification&#xD;&#xA;" HorizontalAlignment="Left" Margin="568,33,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
 
     </Grid>
 </Window>

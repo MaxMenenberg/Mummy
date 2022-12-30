@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="encryptIconV2_NoBkg.png" />
     <None Remove="Icons\decryptIconV2_NoBkg.PNG" />
     <None Remove="Icons\decryptIconV3_NoBkg.PNG" />
     <None Remove="Icons\digitalSignatureIcon_NoBkg.PNG" />
@@ -20,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="encryptIconV2_NoBkg.png" />
     <Resource Include="Icons\decryptIconV2_NoBkg.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
