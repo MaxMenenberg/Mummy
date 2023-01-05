@@ -66,7 +66,7 @@ namespace Mummy
             }
             else
             {
-                DecryptFileButton.IsEnabled = true;
+                DecryptFileButton.IsEnabled = false;
             }
         }
 

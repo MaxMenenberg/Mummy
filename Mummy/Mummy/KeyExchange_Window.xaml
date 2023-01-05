@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mummy"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="Key Exchange" Height="528" Width="679" Background="#FFC8C8C8">
     <Grid>
         <Image x:Name="EncrytWinIcon" HorizontalAlignment="Left" Height="73" Margin="10,10,0,0" VerticalAlignment="Top" Width="76" Source="/Icons/keyExchangeIcon_NoBkg.PNG"/>

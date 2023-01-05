@@ -25,7 +25,7 @@
         <Button x:Name="keyExchangeButton" HorizontalAlignment="Left" Margin="343,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="keyExchangeButton_Click">
             <Image Source="/Icons/keyExchangeIcon_NoBkg.PNG"/>
         </Button>
-        <Button x:Name="SignatureButton" HorizontalAlignment="Left" Margin="458,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">
+        <Button x:Name="SignatureButton" HorizontalAlignment="Left" Margin="458,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro" Click="SignatureButton_Click">
             <Image Source="/Icons/digitalSignatureIcon_NoBkg.PNG"/>
         </Button>
         <Button x:Name="VerifySigButton" HorizontalAlignment="Left" Margin="573,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro">

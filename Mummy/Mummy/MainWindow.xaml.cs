@@ -44,5 +44,11 @@ namespace Mummy
             KeyExchange_Window keyExWin = new KeyExchange_Window();
             keyExWin.Show();
         }
+
+        private void SignatureButton_Click(object sender, RoutedEventArgs e)
+        {
+            DigitalSig_Window digSigWin = new DigitalSig_Window();
+            digSigWin.Show();
+        }
     }
 }
