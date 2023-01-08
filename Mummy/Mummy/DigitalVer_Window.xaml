@@ -1,0 +1,35 @@
+﻿<Window x:Class="Mummy.DigitalVer_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mummy"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="DigitalVer_Window" Height="423" Width="648" Background="#FFC8C8C8">
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="60" Source="/Icons/verifySignatureIcon_NoBkg.PNG"/>
+        <Button x:Name="DigVerSelectFileButton"  HorizontalAlignment="Left" Margin="122,19,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="DigVerSelectFileButton_Click">
+            <TextBlock TextWrapping="Wrap"><Run Text="Select File To Verify"/></TextBlock>
+        </Button>
+        <Button x:Name="DigSigSelectFileButton"  HorizontalAlignment="Left" Margin="239,19,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="DigSigSelectFileButton_Click">
+            <TextBlock TextWrapping="Wrap"><Run Text="Load Digital Signature"/></TextBlock>
+        </Button>
+        <Button x:Name="DigVerKeySelectButton"  HorizontalAlignment="Left" Margin="358,19,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="DigVerKeySelectButton_Click">
+            <TextBlock TextWrapping="Wrap"><Run Text="Load Verification Key"/></TextBlock>
+        </Button>
+        <Button x:Name="CheckSigButton"  HorizontalAlignment="Left" Margin="519,19,0,0" VerticalAlignment="Top" Height="50" Width="90" FontWeight="Bold" Background="#FFA646FF" Click="CheckSigButton_Click">
+            <TextBlock TextWrapping="Wrap"><Run Text="Verify Digital Signature"/></TextBlock>
+        </Button>
+        <Label Content="File To Verify " HorizontalAlignment="Left" Margin="22,83,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <TextBox x:Name="fileToVerTextBox" HorizontalAlignment="Left" Height="18" Margin="27,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="579"/>
+
+        <TextBox x:Name="digSigTextBox" HorizontalAlignment="Left" Height="40" Margin="27,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="579"/>
+        <TextBox x:Name="verKeyTextBox" HorizontalAlignment="Left" Height="40" Margin="27,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="579"/>
+        <Label Content="Digital Signature" HorizontalAlignment="Left" Margin="22,121,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <Label Content="Verification Key" HorizontalAlignment="Left" Margin="22,182,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+        <TextBox x:Name="consoleTextBox_VerSig" HorizontalAlignment="Left" Height="105" Margin="23,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="583"/>
+        <Label Content="Console" HorizontalAlignment="Left" Margin="19,250,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

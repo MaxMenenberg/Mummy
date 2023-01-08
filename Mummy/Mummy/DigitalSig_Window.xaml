@@ -12,16 +12,19 @@
         <Button x:Name="DigSigSelectFileButton"  HorizontalAlignment="Left" Margin="110,23,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="DigSigSelectFileButton_Click">
             <TextBlock TextWrapping="Wrap">Select File To Sign</TextBlock>
         </Button>
-        <Button x:Name="UpdateSigButton" HorizontalAlignment="Left" Margin="250,23,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="UpdateSigButton_Click">
+        <Button x:Name="UpdateSigButton" HorizontalAlignment="Left" Margin="234,23,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="UpdateSigButton_Click">
             <TextBlock TextWrapping="Wrap">Update Signing Key</TextBlock>
         </Button>
-        <Button x:Name="SignFileButton" Content="Sign File" HorizontalAlignment="Left" Margin="404,23,0,0" VerticalAlignment="Top" Height="50" Width="90" FontWeight="Bold" Background="#FFC168FF" Click="SignFileButton_Click"/>
+        <Button x:Name="SignFileButton" Content="Sign File" HorizontalAlignment="Left" Margin="481,23,0,0" VerticalAlignment="Top" Height="50" Width="90" FontWeight="Bold" Background="#FFC168FF" Click="SignFileButton_Click"/>
         <TextBox x:Name="consoleTextBox_DigSig" HorizontalAlignment="Left" Height="170" Margin="10,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="583"/>
         <Label Content="Console" HorizontalAlignment="Left" Margin="9,184,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <Label Content="File: " HorizontalAlignment="Left" Margin="9,91,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <TextBox x:Name="fileToSignTextBox" HorizontalAlignment="Left" Height="18" Margin="46,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
         <Label Content="Key:" HorizontalAlignment="Left" Margin="12,136,0,0" VerticalAlignment="Top" FontFamily="Cambria Math" FontWeight="Bold"/>
         <TextBox x:Name="signingKeyTextBox" HorizontalAlignment="Left" Height="55" Margin="46,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="547"/>
+        <Button x:Name="GenerateVerKeyButton" HorizontalAlignment="Left" Margin="353,23,0,0" VerticalAlignment="Top" Height="50" Width="90" Click="GenerateVerKeyButton_Click">
+            <TextBlock TextWrapping="Wrap"><Run Text="Generate Verification Key"/></TextBlock>
+        </Button>
 
     </Grid>
 </Window>

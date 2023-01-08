@@ -50,5 +50,11 @@ namespace Mummy
             DigitalSig_Window digSigWin = new DigitalSig_Window();
             digSigWin.Show();
         }
+
+        private void VerifySigButton_Click(object sender, RoutedEventArgs e)
+        {
+            DigitalVer_Window digVerWin = new DigitalVer_Window();
+            digVerWin.Show();
+        }
     }
 }

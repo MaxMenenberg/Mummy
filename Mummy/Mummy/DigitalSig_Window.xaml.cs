@@ -27,7 +27,7 @@ namespace Mummy
         string privateSigningKeyFile = "PrivateSigningKey.key";
         bool signingKeyExists, fileToSignSelected;
         string fileToSign;
-        MxKey signingKey;
+        MxKey signingKey, verificationKey;
 
         public DigitalSig_Window()
         {
@@ -35,9 +35,10 @@ namespace Mummy
             signingKeyExists = false;
             fileToSignSelected = false;
             SignFileButton.IsEnabled = false;
-            signingKey= new MxKey();
+            GenerateVerKeyButton.IsEnabled = false;
+            signingKey = new MxKey();
+            verificationKey = new MxKey();
             checkForSigningKey();
-
         }
 
         private void checkForSigningKey() {
@@ -46,6 +47,7 @@ namespace Mummy
                 signingKey.ImportKeyFromFile(privateSigningKeyFile);
                 signingKeyExists = true;
                 signingKeyTextBox.Text = Convert.ToHexString(signingKey.Key);
+                GenerateVerKeyButton.IsEnabled = true;
                 consoleTextBox_DigSig.Text = "Successfully loaded private signing key";
             }
             else {
@@ -64,6 +66,7 @@ namespace Mummy
                 consoleTextBox_DigSig.Text = "Could not find a private signing key and created new one.";
                 signingKeyTextBox.Text = Convert.ToHexString(signingKey.Key);
                 signingKeyExists = true;
+                GenerateVerKeyButton.IsEnabled = true;
             }
         }
 
@@ -150,10 +153,42 @@ namespace Mummy
                     consoleTextBox_DigSig.Text = "Successfully saved signature to " + digSigFileName;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 clearConsole();
                 consoleTextBox_DigSig.Text = "Could not sign " + fileToSign;
+                consoleTextBox_DigSig.AppendText("\n\n" + ex.StackTrace);
+            }
+        }
+
+        private void GenerateVerKeyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            ECDsaCng dsaSign = new ECDsaCng(CngKey.Import(signingKey.Key, CngKeyBlobFormat.EccPrivateBlob));
+            byte[] Key_Ver = dsaSign.Key.Export(CngKeyBlobFormat.EccPublicBlob);
+
+            verificationKey.Key = Key_Ver;
+            verificationKey.IsPrivate = false;
+            verificationKey.KeyType = MxKeyType.ECDSA;
+
+            //Save the verification key to a file
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "VerificationKey"; // Default file name
+            dlg.DefaultExt = ".ver"; // Default file extension
+            dlg.Filter = "Elliptic Curve Digital Signature Verification Key (.ver)|*.ver"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string digSigFileName = dlg.FileName;
+                verificationKey.ExportKeyToFile(digSigFileName);
+
+                clearConsole();
+                consoleTextBox_DigSig.Text = "Successfully saved verification key to to " + digSigFileName;
             }
         }
 

@@ -13,6 +13,9 @@
     <Compile Update="DigitalSig_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="DigitalVer_Window.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Encryption_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DigitalSig_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DigitalVer_Window.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Encryption_Window.xaml">

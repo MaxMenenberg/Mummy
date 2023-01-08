@@ -109,7 +109,11 @@ namespace Mummy
 
         private void DecryptFileButton_Click(object sender, RoutedEventArgs e)
         {
-            string decryptedFileName = fileToDecrypt.Substring(0, fileToDecrypt.Length - 6);
+            string? baseDir = System.IO.Path.GetDirectoryName(fileToDecrypt);
+            string fileNameTemp = System.IO.Path.GetFileName(fileToDecrypt);
+            fileNameTemp = "dc_" + fileNameTemp.Substring(0, fileNameTemp.Length - 6);
+            string decryptedFileName = System.IO.Path.Combine(baseDir, fileNameTemp);
+
             try
             {
                 File.Create(decryptedFileName).Close();
@@ -135,7 +139,6 @@ namespace Mummy
                 consoleTextBox_decrypt.Text = "Successfully Decrypted " + fileToDecrypt + " to " + decryptedFileName;
             }
             catch {
-                File.Delete(decryptedFileName);
                 clearConsole();
                 consoleTextBox_decrypt.Text = "Could not decrypt " + fileToDecrypt;
                 consoleTextBox_decrypt.AppendText("\nMake sure the key or password is correct");
