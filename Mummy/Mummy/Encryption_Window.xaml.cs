@@ -70,7 +70,7 @@ namespace Mummy
 
         private void EncryptImportKeyButton_Click(object sender, RoutedEventArgs e)
         {
-            string keyFile = Utils.GetFileFromDialog();
+            string keyFile = Utils.GetFileFromDialog("key");
 
             bool KeyImportSuccess = k.ImportKeyFromFile(keyFile);
 

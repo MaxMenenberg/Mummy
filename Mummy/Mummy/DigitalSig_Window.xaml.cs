@@ -137,7 +137,7 @@ namespace Mummy
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                 dlg.FileName = "DigitalSignature"; // Default file name
                 dlg.DefaultExt = ".sig"; // Default file extension
-                dlg.Filter = "Elliptic Curve Digital Signature (.sig)|*.sig"; // Filter files by extension
+                dlg.Filter = "Digital Signature (.sig)|*.sig"; // Filter files by extension
 
                 // Show save file dialog box
                 Nullable<bool> result = dlg.ShowDialog();
@@ -175,7 +175,7 @@ namespace Mummy
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.FileName = "VerificationKey"; // Default file name
             dlg.DefaultExt = ".ver"; // Default file extension
-            dlg.Filter = "Elliptic Curve Digital Signature Verification Key (.ver)|*.ver"; // Filter files by extension
+            dlg.Filter = "Signature Verification Key (.ver)|*.ver"; // Filter files by extension
 
             // Show save file dialog box
             Nullable<bool> result = dlg.ShowDialog();

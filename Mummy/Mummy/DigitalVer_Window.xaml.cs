@@ -61,7 +61,7 @@ namespace Mummy
 
         private void DigSigSelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            digSigFile = Utils.GetFileFromDialog();
+            digSigFile = Utils.GetFileFromDialog("sig");
             if (!digSigFile.Equals("default"))
             {
                 digSig.ImportKeyFromFile(digSigFile);
@@ -81,7 +81,7 @@ namespace Mummy
 
         private void DigVerKeySelectButton_Click(object sender, RoutedEventArgs e)
         {
-            verKeyFile = Utils.GetFileFromDialog();
+            verKeyFile = Utils.GetFileFromDialog("ver");
             if (!verKeyFile.Equals("default"))
             {
                 verKey.ImportKeyFromFile(verKeyFile);

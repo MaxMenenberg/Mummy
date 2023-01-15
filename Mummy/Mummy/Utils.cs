@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Mummy
 {
@@ -36,10 +37,31 @@ namespace Mummy
             return val - (val < 58 ? 48 : (val < 97 ? 55 : 87));
         }
 
-        public static string GetFileFromDialog() {
+        public static string GetFileFromDialog(string filter = "all") {
             string fileName = "default";
 
             var dialog = new Microsoft.Win32.OpenFileDialog();
+
+            if (filter.Equals("key"))
+            {
+                dialog.Filter = "Key Files(.key)|*.key|All Files(*.*)|*.*";
+            }
+            else if (filter.Equals("sig"))
+            {
+                dialog.Filter = "Digital Signature (.sig)|*.sig|All Files(*.*)|*.*";
+            }
+            else if (filter.Equals("ver"))
+            {
+                dialog.Filter = "Signature Verification Key (.ver)|*.ver|All Files(*.*)|*.*";
+            }
+            else if (filter.Equals("crypt")) {
+                dialog.Filter = "Encrypted Files (.crypt)|*.crypt|All Files(*.*)|*.*";
+            }
+
+            else
+            {
+                dialog.Filter = "All Files(*.*)|*.*";
+            }
 
             bool? result = dialog.ShowDialog();
             if (result == true)
@@ -63,6 +85,22 @@ namespace Mummy
             }
 
             return hashRes265Bit;
+        }
+
+        public static void clearActivityLog()
+        {
+            try
+            {
+                if (File.Exists("RecentActivityLog.csv")) {
+                    File.Delete("RecentActivityLog.csv");
+                    using (File.Create("RecentActivityLog.csv")) { 
+
+                    }
+                }
+            }
+            catch { 
+            
+            }
         }
 
         }

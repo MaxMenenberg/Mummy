@@ -43,7 +43,7 @@ namespace Mummy
 
         private void DecryptSelectFileButton_Click(object sender, RoutedEventArgs e)
         {
-            fileToDecrypt = Utils.GetFileFromDialog();
+            fileToDecrypt = Utils.GetFileFromDialog("crypt");
             
             string fileExtention = fileToDecrypt.Substring(fileToDecrypt.Length - 6, 6);
             if (fileExtention.Equals(expectedFileExtension))
@@ -72,7 +72,7 @@ namespace Mummy
 
         private void DecryptImportKeyButton_Click(object sender, RoutedEventArgs e)
         {
-            string keyFile = Utils.GetFileFromDialog();
+            string keyFile = Utils.GetFileFromDialog("key");
 
             bool KeyImportSuccess = k.ImportKeyFromFile(keyFile);
 
