@@ -5,6 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Mummy
 {
@@ -98,9 +101,53 @@ namespace Mummy
                     }
                 }
             }
-            catch { 
-            
+            catch {
+                Console.WriteLine("Could not clear activity log");
             }
+        }
+
+        public static void writeEntryToLog(RecentActivityLogEntry LogEntry, bool appendEntry) {
+
+            string logString = LogEntry.action + "," + LogEntry.time.ToString() + "," +
+                LogEntry.input?.ToString() + "," + LogEntry.ouput?.ToString();
+
+            if (appendEntry)
+            {
+                using (StreamWriter sw = File.AppendText("RecentActivityLog.csv"))
+                {
+                    sw.WriteLine(logString);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = new StreamWriter("RecentActivityLog.csv"))
+                {
+                    sw.WriteLine(logString);
+                }
+            }
+        
+        }
+
+        public static ObservableCollection<RecentActivityLogEntry> importLogActivity(string logActivityFile) {
+
+            ObservableCollection<RecentActivityLogEntry> log = new ObservableCollection<RecentActivityLogEntry>();
+
+            using (StreamReader sw = new StreamReader(logActivityFile)) {
+                string line;
+                while ((line = sw.ReadLine()) != null) {
+                    RecentActivityLogEntry tempEntry = new RecentActivityLogEntry();
+                    tempEntry.createFromLogString(line);
+                    if (log.Count == 0)
+                    {
+                        log.Add(tempEntry);
+                    }
+                    else
+                    {
+                        log.Insert(0, tempEntry);
+                    }
+                }
+            }
+            return log;
         }
 
         }

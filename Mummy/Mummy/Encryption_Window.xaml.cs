@@ -31,6 +31,8 @@ namespace Mummy
         private MxKey k;
         private byte[] IV = new byte[16];
 
+        public event RoutedEventHandler updateActivityLog;
+
         public Encryption_Window()
         {
             InitializeComponent();
@@ -216,7 +218,13 @@ namespace Mummy
                     consoleTextBox_encrypt.AppendText("\nExported Key to " + EncryptionKeyFileName);
                 }
 
-
+                RecentActivityLogEntry logEntry = new RecentActivityLogEntry();
+                logEntry.action = "Encryption";
+                logEntry.time = DateTime.Now;
+                logEntry.input = fileToEncrypt;
+                logEntry.ouput = EncryptedFileName;
+                Utils.writeEntryToLog(logEntry, true);
+                updateActivityLog(this, null);
 
             }
             catch(Exception ex)

@@ -24,6 +24,8 @@ namespace Mummy
         MxKey PrivA, PubA, PubB, ShrdScrt;
         bool keyALoaded, keyBLoaded;
 
+        public event RoutedEventHandler updateActivityLog;
+
         public KeyExchange_Window()
         {
             InitializeComponent();
@@ -141,11 +143,21 @@ namespace Mummy
                     byte[] hashResults = hashFunc.ComputeHash(ShrdScrtBytes);
                     SsHash_TextBox.Text = Convert.ToHexString(hashResults);
 
+                    RecentActivityLogEntry logEntry = new RecentActivityLogEntry();
+                    logEntry.action = "Key Exchange";
+                    logEntry.time = DateTime.Now;
+                    logEntry.input = "Recieved Public Key: " + Convert.ToHexString(PubB.Key);
+                    logEntry.ouput = shrdScrtKeyFileName;
+                    Utils.writeEntryToLog(logEntry, true);
+                    updateActivityLog(this, null);
+
                     clearConsole();
                     consoleTextBox_keyEx.Text = "Successfully saved shared secret key to " + shrdScrtKeyFileName;
                 }
 
-              
+                
+
+
             }
             catch {
                 clearConsole();

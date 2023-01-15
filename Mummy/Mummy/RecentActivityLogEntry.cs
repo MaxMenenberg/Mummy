@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace Mummy
 {
-    internal class RecentActivityLogEntry
+    public class RecentActivityLogEntry
     {
-        public enum cryptoAction { 
-            Encryption,                         //0
-            Decryption,                         //1
-            KeyExchange,                        //2 
-            DigitalSignature,                   //3
-            DigitalSignatureVerification,       //4  
-        }
+
+        public string? action { get; set; }
 
         public DateTime time { get; set; }
 
         public string? input { get; set; }
 
         public string? ouput { get; set; }
+
+        public void createFromLogString(string logString) {
+            string[] LogParams = logString.Split(new char[] { ',' });
+
+            action = LogParams[0];
+
+            time = Convert.ToDateTime(LogParams[1]);
+
+            input = LogParams[2];
+
+            ouput = LogParams[3];
+        }
     }
 }

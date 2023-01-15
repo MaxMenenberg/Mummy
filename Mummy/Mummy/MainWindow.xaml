@@ -13,7 +13,7 @@
             ToolTipService.ShowDuration="2000" 
             ToolTipService.BetweenShowDelay="2000" 
             ToolTip="Encrypt a file">
-            <Image Source="Icons/encryptIconV3_NoBkg.png"/>
+            <Image Source="/Icons/encryptIconV3_NoBkg.png"/>
         </Button>
         <Button x:Name="decryptButton" HorizontalAlignment="Left" Margin="228,68,0,0" VerticalAlignment="Top" Height="75" Width="90" Background="Gainsboro"
             ToolTipService.InitialShowDelay="2000" 
@@ -36,6 +36,8 @@
         <Label Content="Key Exchange" HorizontalAlignment="Left" Margin="338,47,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
         <Label Content="Digital Signature" HorizontalAlignment="Left" Margin="454,46,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
         <Label Content="Digital Signature &#xD;&#xA;Verification&#xD;&#xA;" HorizontalAlignment="Left" Margin="568,33,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontWeight="Bold"/>
+        <DataGrid x:Name="LogDataGrid" CanUserSortColumns="True" HorizontalAlignment="Left" Height="217" Margin="49,182,0,0" VerticalAlignment="Top" Width="676" ItemsSource="{Binding}" ColumnWidth="*"/>
+
 
     </Grid>
 </Window>

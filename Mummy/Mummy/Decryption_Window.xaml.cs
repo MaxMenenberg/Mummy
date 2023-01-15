@@ -30,6 +30,8 @@ namespace Mummy
         private byte[] IV = new byte[16];
         private string expectedFileExtension = ".crypt";
 
+        public event RoutedEventHandler updateActivityLog;
+
         public Decryption_Window()
         {
             InitializeComponent();
@@ -134,6 +136,14 @@ namespace Mummy
                 byte[] decryptedFileData = cipher.DecryptCbc(rawCipherData, IV, PaddingMode.PKCS7);
 
                 File.WriteAllBytes(decryptedFileName, decryptedFileData);
+
+                RecentActivityLogEntry logEntry = new RecentActivityLogEntry();
+                logEntry.action = "Decryption";
+                logEntry.time = DateTime.Now;
+                logEntry.input = fileToDecrypt;
+                logEntry.ouput = decryptedFileName;
+                Utils.writeEntryToLog(logEntry, true);
+                updateActivityLog(this, null);
 
                 clearConsole();
                 consoleTextBox_decrypt.Text = "Successfully Decrypted " + fileToDecrypt + " to " + decryptedFileName;

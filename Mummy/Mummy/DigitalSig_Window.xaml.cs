@@ -29,6 +29,8 @@ namespace Mummy
         string fileToSign;
         MxKey signingKey, verificationKey;
 
+        public event RoutedEventHandler updateActivityLog;
+
         public DigitalSig_Window()
         {
             InitializeComponent();
@@ -135,7 +137,7 @@ namespace Mummy
 
                 //Save the signature to a file
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                dlg.FileName = "DigitalSignature"; // Default file name
+                dlg.FileName = "Digital Signature"; // Default file name
                 dlg.DefaultExt = ".sig"; // Default file extension
                 dlg.Filter = "Digital Signature (.sig)|*.sig"; // Filter files by extension
 
@@ -148,6 +150,14 @@ namespace Mummy
                     // Save document
                     string digSigFileName = dlg.FileName;
                     sig.ExportKeyToFile(digSigFileName);
+
+                    RecentActivityLogEntry logEntry = new RecentActivityLogEntry();
+                    logEntry.action = "DigitalSignature";
+                    logEntry.time = DateTime.Now;
+                    logEntry.input = fileToSign;
+                    logEntry.ouput = digSigFileName;
+                    Utils.writeEntryToLog(logEntry, true);
+                    updateActivityLog(this, null);
 
                     clearConsole();
                     consoleTextBox_DigSig.Text = "Successfully saved signature to " + digSigFileName;

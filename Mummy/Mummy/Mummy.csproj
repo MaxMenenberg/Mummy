@@ -42,4 +42,14 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="RecentActivityLog.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y &quot;$(ProjectDir)Icons\encryptIconV3_NoBkg.png&quot; &quot;$(ProjectDir)$(OutDir)&quot;&#xD;&#xA;xcopy /y &quot;$(ProjectDir)Icons\decryptIconV3_NoBkg.png&quot; &quot;$(ProjectDir)$(OutDir)&quot;&#xD;&#xA;xcopy /y &quot;$(ProjectDir)Icons\keyExchangeIcon_NoBkg&quot; &quot;$(ProjectDir)$(OutDir)&quot;&#xD;&#xA;xcopy /y &quot;$(ProjectDir)Icons\digitalSignatureIcon_NoBkg.png&quot; &quot;$(ProjectDir)$(OutDir)&quot;&#xD;&#xA;xcopy /y &quot;$(ProjectDir)Icons\verifySignatureIcon_NoBkg.png&quot; &quot;$(ProjectDir)$(OutDir)&quot;&#xD;&#xA;xcopy /y &quot;$(ProjectDir)RecentActivityLog.csv&quot; &quot;$(ProjectDir)$(OutDir)&quot;" />
+  </Target>
+
 </Project>

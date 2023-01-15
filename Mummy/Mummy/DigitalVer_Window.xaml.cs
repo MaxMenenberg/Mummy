@@ -28,6 +28,8 @@ namespace Mummy
         MxKey digSig, verKey;
         string fileToVerify, digSigFile, verKeyFile;
 
+        public event RoutedEventHandler updateActivityLog;
+
 
         public DigitalVer_Window()
         {
@@ -106,14 +108,26 @@ namespace Mummy
                 byte[] fileBytes = File.ReadAllBytes(fileToVerify);
                 ECDsaCng dsaVer = new ECDsaCng(CngKey.Import(verKey.Key, CngKeyBlobFormat.EccPublicBlob));
 
+                RecentActivityLogEntry logEntry = new RecentActivityLogEntry();
+                logEntry.action = "Digital Signature Verification";
+                logEntry.time = DateTime.Now;
+                logEntry.input = fileToVerify;
+               
+
                 if (dsaVer.VerifyData(SHA256.HashData(fileBytes), digSig.Key))
                 {
                     consoleTextBox_VerSig.Text = "Signature Verification: PASS";
+                    logEntry.ouput = "Signature Verification: PASS";
                 }
                 else
                 {
                     consoleTextBox_VerSig.Text = "Signature Verification: FAIL";
+                    logEntry.ouput = "Signature Verification: FAIL";
                 }
+                
+                Utils.writeEntryToLog(logEntry, true);
+                updateActivityLog(this, null);
+
 
 
             }
